@@ -90,7 +90,7 @@ export function SettingsDialog({ open, onOpenChange, user, accessToken, onUserUp
       const fileName = `avatar-${user.id}-${Date.now()}.${fileExt}`;
 
       // Upload to Supabase Storage
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('make-b21717d1-avatars')
         .upload(fileName, file, {
           cacheControl: '3600',

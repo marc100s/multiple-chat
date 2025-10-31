@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ChatMessage } from '../components/ChatMessage';
 import { ChatSource } from '../components/ChatSidebar';
-import { projectId, publicAnonKey } from '../utils/supabase/info';
+import { projectId } from '../utils/supabase/info';
 
 interface UseChatProps {
   accessToken: string | null;
   userId: string | null;
 }
 
-export function useChat({ accessToken, userId }: UseChatProps) {
+export function useChat({ accessToken }: UseChatProps) {
   const [sources, setSources] = useState<ChatSource[]>([]);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState(false);

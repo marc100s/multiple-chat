@@ -2,7 +2,7 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { ScrollArea } from './ui/scroll-area';
 import { Separator } from './ui/separator';
-import { Plus, Hash, Users, MessageCircle } from 'lucide-react';
+import { Plus, Hash } from 'lucide-react';
 
 export interface ChatSource {
   id: string;

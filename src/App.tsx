@@ -90,7 +90,6 @@ export default function App() {
   const { 
     sources, 
     messages, 
-    loading, 
     error, 
     sendMessage, 
     addSource, 
