@@ -33,7 +33,7 @@ const platformNames = {
   local: 'Local'
 };
 
-export function ChatMessage({ message }: ChatMessageProps) {
+export function ChatMessageComponent({ message }: ChatMessageProps) {
   return (
     <div className={`flex gap-3 p-3 ${message.isOwn ? 'flex-row-reverse' : 'flex-row'}`}>
       <Avatar className="size-8 flex-shrink-0">

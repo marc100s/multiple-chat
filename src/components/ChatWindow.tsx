@@ -1,5 +1,5 @@
 import { ScrollArea } from './ui/scroll-area';
-import { ChatMessage, ChatMessage as ChatMessageType } from './ChatMessage';
+import { ChatMessageComponent, ChatMessage as ChatMessageType } from './ChatMessage';
 import { ChatInput } from './ChatInput';
 import { Hash, Users } from 'lucide-react';
 
@@ -72,7 +72,7 @@ export function ChatWindow({
           ) : (
             <div className="space-y-1">
               {messages.map((message) => (
-                <ChatMessage key={message.id} message={message} />
+                <ChatMessageComponent key={message.id} message={message} />
               ))}
             </div>
           )}

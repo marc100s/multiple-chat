@@ -22,9 +22,9 @@ interface NotificationSettings {
 interface SettingsDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  user: any;
+  user: { id: string; email?: string; user_metadata?: { name?: string; avatar?: string; notifications?: Record<string, boolean> } } | null;
   accessToken: string | null;
-  onUserUpdate?: (userData: any) => void;
+  onUserUpdate?: (userData: { id: string; user_metadata?: Record<string, unknown> }) => void;
 }
 
 export function SettingsDialog({ open, onOpenChange, user, accessToken, onUserUpdate }: SettingsDialogProps) {

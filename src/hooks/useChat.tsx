@@ -33,9 +33,9 @@ export function useChat({ accessToken }: UseChatProps) {
 
       const result = await response.json();
       setSources(result.sources || []);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error fetching sources:', err);
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'Unknown error');
     }
   }, [accessToken, baseUrl]);
 
@@ -56,7 +56,7 @@ export function useChat({ accessToken }: UseChatProps) {
       }
 
       const result = await response.json();
-      const formattedMessages: ChatMessage[] = result.messages.map((msg: any) => ({
+      const formattedMessages: ChatMessage[] = result.messages.map((msg: { id: string; content: string; senderName: string; platform: 'discord' | 'slack' | 'teams' | 'telegram' | 'local'; timestamp: string; isOwn: boolean }) => ({
         id: msg.id,
         content: msg.content,
         sender: {
@@ -69,9 +69,9 @@ export function useChat({ accessToken }: UseChatProps) {
       }));
 
       setMessages(formattedMessages);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error fetching messages:', err);
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setLoading(false);
     }
@@ -123,9 +123,9 @@ export function useChat({ accessToken }: UseChatProps) {
           : source
       ));
 
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error sending message:', err);
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'Unknown error');
     }
   }, [accessToken, baseUrl]);
 
@@ -165,9 +165,9 @@ export function useChat({ accessToken }: UseChatProps) {
       setSources(prev => [...prev, newSource]);
       return newSource;
 
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error adding source:', err);
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'Unknown error');
       return null;
     }
   }, [accessToken, baseUrl]);

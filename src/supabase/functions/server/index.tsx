@@ -211,6 +211,7 @@ app.get('/make-server-b21717d1/sources', async (c) => {
       const source = await kv.get(`source:${sourceId}`);
       if (source) {
         // Don't return sensitive token data
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { token, ...safeSource } = source;
         sources.push(safeSource);
       }

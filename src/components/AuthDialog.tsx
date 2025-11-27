@@ -11,7 +11,7 @@ import { projectId, publicAnonKey } from '../utils/supabase/info';
 interface AuthDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onAuthSuccess: (user: any, accessToken: string) => void;
+  onAuthSuccess: (user: { id: string; user_metadata?: Record<string, unknown> }, accessToken: string) => void;
 }
 
 export function AuthDialog({ open, onOpenChange, onAuthSuccess }: AuthDialogProps) {
@@ -52,9 +52,9 @@ export function AuthDialog({ open, onOpenChange, onAuthSuccess }: AuthDialogProp
 
       // Sign in after successful signup
       await handleSignin(e, true);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Signup error:', err);
-      setError(err.message || 'Failed to sign up');
+      setError(err instanceof Error ? err.message : 'Failed to sign up');
     } finally {
       setLoading(false);
     }
@@ -92,9 +92,9 @@ export function AuthDialog({ open, onOpenChange, onAuthSuccess }: AuthDialogProp
         setSignupData({ name: '', email: '', password: '' });
         setSigninData({ email: '', password: '' });
       }
-    } catch (err: any) {
+    } catch (err) {
       console.error('Sign in error:', err);
-      setError(err.message || 'Failed to sign in');
+      setError(err instanceof Error ? err.message : 'Failed to sign in');
     } finally {
       setLoading(false);
     }

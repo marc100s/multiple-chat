@@ -19,12 +19,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
-    /* Path mapping */
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "forceConsistentCasingInFileNames": true,
+    // Remove baseUrl and paths
+    // Remove ignoreDeprecations
   },
   "include": ["src"],
   "exclude": ["src/supabase/functions/**"],

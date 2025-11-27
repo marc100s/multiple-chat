@@ -55,7 +55,7 @@ export function IntegrationDialog({ open, onOpenChange, onAddIntegration }: Inte
   const handleAdd = () => {
     if (selectedType && name && token) {
       onAddIntegration({
-        type: selectedType as any,
+        type: selectedType as 'discord' | 'slack' | 'teams' | 'telegram',
         name,
         token
       });

@@ -76,7 +76,7 @@ const demoMessages: ChatMessage[] = [
 ];
 
 export default function App() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{ id: string; email?: string; user_metadata?: { name?: string; avatar?: string; notifications?: Record<string, boolean> } } | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [showAuthDialog, setShowAuthDialog] = useState(false);
   const [showIntegrationDialog, setShowIntegrationDialog] = useState(false);
@@ -95,7 +95,7 @@ export default function App() {
     addSource, 
     fetchMessages,
     clearError 
-  } = useChat({ accessToken, userId: user?.id });
+  } = useChat({ accessToken, userId: user?.id ?? null });
 
   // Toggle sidebar function
   const toggleSidebar = useCallback(() => {
@@ -168,13 +168,13 @@ export default function App() {
     }
   }, [activeSourceId, accessToken, fetchMessages, demoMode]);
 
-  const handleAuthSuccess = (userData: any, token: string) => {
+  const handleAuthSuccess = (userData: { id: string; user_metadata?: Record<string, unknown> }, token: string) => {
     setUser(userData);
     setAccessToken(token);
     setDemoMode(false);
   };
 
-  const handleUserUpdate = (userData: any) => {
+  const handleUserUpdate = (userData: { id: string; user_metadata?: Record<string, unknown> }) => {
     setUser(userData);
   };
 
